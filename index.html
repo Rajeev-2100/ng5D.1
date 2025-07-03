@@ -27,12 +27,41 @@
         <h1>VibeBoard Home</h1>
       </hgroup>
     </header>
-    <main class="container">app goes here..</main>
+    <main class="container">
+      <section>
+        <h2>Category Counts</h2>
+        <hr>
+        <div id="categoryCounts">
+
+        </div>
+      </section>
+    </main>
     <footer class="container neog-footer">
       <small>
         go from zero to hero at full stack development with
         <a href="https://neog.camp">neog.camp</a>
       </small>
     </footer>
+    <script>
+
+      function displayCount(category) {
+        const count = vibeBoardDB({ category:  category}).count()
+        return `<p> Total Gifs in ${category}: ${count}</p>`
+      }
+
+      function displayCategoryCounts(){
+        const categories = ["Reaction", "Cute", "Meme", "Other"]
+        const countContainer = document.getElementById('categoryCounts')
+
+        const categoryCounts = categories.map(displayCount)
+        countContainer.innerHTML = categoryCounts.join("")
+      }
+
+      function displayData() {
+        displayCategoryCounts()
+
+      }
+      document.addEventListener('DOMContentLoaded', displayData)
+    </script>
   </body>
 </html>
